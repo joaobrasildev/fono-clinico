@@ -2720,6 +2720,477 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ═══════════════════════════════════════════════════════════════
+           MOBILE LAYOUT — max-width: 768px
+           Completamente separado do layout desktop. Não altera nada acima.
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* ── Hambúrger button — oculto no desktop, fixo no mobile ─────── */
+        #mob-menu-btn {
+            display: none;
+            position: fixed;
+            top: 10px;
+            right: 16px;
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--primary-light);
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            padding: 0;
+        }
+
+        #mob-menu-btn span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--primary-dark);
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+        /* ── Overlay de fundo da gaveta ────────────────────────────────── */
+        #mob-nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(14, 30, 55, 0.5);
+            z-index: 300;
+        }
+
+        #mob-nav-overlay.mob-open {
+            display: block;
+        }
+
+        /* ── Gaveta de navegação ───────────────────────────────────────── */
+        #mob-nav-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 82vw;
+            max-width: 320px;
+            background: white;
+            z-index: 301;
+            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%);
+            transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        #mob-nav-drawer.mob-open {
+            transform: translateX(0);
+        }
+
+        .mob-drawer-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .mob-drawer-close {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--muted-bg);
+            display: grid;
+            place-items: center;
+            font-size: 18px;
+            color: var(--muted);
+            border: none;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .mob-drawer-nav {
+            padding: 8px 0 20px;
+            flex: 1;
+        }
+
+        .mob-drawer-nav .mob-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            font-size: 14.5px;
+            font-weight: 500;
+            color: var(--foreground);
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .mob-drawer-nav .mob-nav-link:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        .mob-drawer-section {
+            padding: 10px 18px 4px;
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+        }
+
+        .mob-drawer-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 6px 18px;
+        }
+
+        .mob-nav-danger {
+            color: var(--danger) !important;
+        }
+
+        /* ── @media (max-width: 768px) ─────────────────────────────────── */
+        @media (max-width: 768px) {
+
+            /* Mostrar hambúrger */
+            #mob-menu-btn {
+                display: flex;
+            }
+
+            /* Esconder nav e CTAs do desktop */
+            header.nav .nav-links,
+            header.nav .btn-primary,
+            header.nav .btn-premium {
+                display: none !important;
+            }
+
+            header.nav .nav-wrap {
+                padding: 11px 16px;
+            }
+
+            /* ── Login ──────────────────────────────────────────────────── */
+            .login-screen {
+                grid-template-columns: 1fr;
+            }
+
+            .login-side {
+                padding: 24px 20px 16px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .login-hero-content {
+                padding: 10px 0 8px;
+            }
+
+            .login-hero-title {
+                font-size: clamp(20px, 5.5vw, 26px);
+            }
+
+            .login-hero-lead {
+                font-size: 13.5px;
+                margin-bottom: 14px;
+            }
+
+            .login-features {
+                display: none;
+            }
+
+            .login-form-wrap {
+                padding: 24px 20px 32px;
+            }
+
+            /* ── Hero ───────────────────────────────────────────────────── */
+            .hero {
+                padding: 28px 16px 22px;
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .hero-illu {
+                display: none;
+            }
+
+            h1 {
+                font-size: clamp(26px, 7vw, 32px);
+            }
+
+            .hero p.lead {
+                font-size: 15px;
+                margin-bottom: 22px;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-cta .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* ── Stats ──────────────────────────────────────────────────── */
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 16px 28px;
+                gap: 12px;
+            }
+
+            .stat {
+                padding: 18px 16px;
+            }
+
+            .stat-num {
+                font-size: 26px;
+            }
+
+            /* ── Módulos ────────────────────────────────────────────────── */
+            section.block {
+                padding: 32px 16px;
+            }
+
+            .modules {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .module {
+                padding: 20px;
+            }
+
+            .section-head h2 {
+                font-size: clamp(22px, 5.5vw, 28px);
+            }
+
+            /* ── Integrado ──────────────────────────────────────────────── */
+            .integrated {
+                grid-template-columns: 1fr;
+                padding: 22px 16px;
+                gap: 20px;
+                border-radius: 16px;
+            }
+
+            .integrated h2 {
+                font-size: 20px;
+            }
+
+            /* ── Dicas ──────────────────────────────────────────────────── */
+            .tips {
+                grid-template-columns: 1fr;
+            }
+
+            /* ── CTA block ──────────────────────────────────────────────── */
+            .cta-block {
+                padding: 30px 16px;
+                border-radius: 18px;
+            }
+
+            .cta-block h2 {
+                font-size: 21px;
+            }
+
+            .cta-block p {
+                font-size: 14px;
+            }
+
+            .cta-block .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* ── Footer ─────────────────────────────────────────────────── */
+            footer {
+                padding: 28px 16px 18px;
+            }
+
+            .footer-wrap {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            /* ── Modal de Planos ─────────────────────────────────────────── */
+            .modal {
+                padding: 22px 16px;
+                border-radius: 14px;
+                max-height: 92vh;
+            }
+
+            .modal h2 {
+                font-size: 20px;
+            }
+
+            .modal>p {
+                font-size: 14px;
+                margin-bottom: 18px;
+            }
+
+            .plans {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            /* ── Seleção de Tipo de Diagnóstico ─────────────────────────── */
+            .diag-type-screen {
+                padding: 20px 16px 32px;
+            }
+
+            .diag-types-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .diag-type-card {
+                padding: 20px 16px;
+            }
+
+            .diag-type-intro h2 {
+                font-size: 22px;
+            }
+
+            /* ── Diagnóstico: Perguntas ──────────────────────────────────── */
+            .diag-screen {
+                padding: 20px 16px;
+            }
+
+            .diag-card {
+                padding: 22px 14px;
+            }
+
+            .question h3 {
+                font-size: 17px;
+            }
+
+            .scale {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
+            }
+
+            .scale-btn {
+                font-size: 14px;
+                border-radius: 10px;
+            }
+
+            .diag-nav {
+                flex-direction: column-reverse;
+                gap: 10px;
+            }
+
+            .diag-nav .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* ── Sim/Não ─────────────────────────────────────────────────── */
+            .yn-btn {
+                padding: 18px 10px;
+                font-size: 15px;
+            }
+
+            .yn-emoji {
+                font-size: 26px;
+            }
+
+            /* ── Resultado ───────────────────────────────────────────────── */
+            .result-score .big {
+                font-size: 48px;
+            }
+
+            .result-icon {
+                width: 72px;
+                height: 72px;
+                font-size: 34px;
+            }
+
+            /* ── Guias educativos ────────────────────────────────────────── */
+            .guide-header {
+                padding: 28px 16px 22px;
+            }
+
+            .guide-body {
+                padding: 24px 16px 44px;
+            }
+
+            .guide-header h1 {
+                font-size: clamp(22px, 5.5vw, 28px);
+            }
+
+            /* ── Admin screens ───────────────────────────────────────────── */
+            .admin-wrap {
+                padding: 18px 14px 32px;
+            }
+
+            .admin-table td,
+            .admin-table th {
+                padding: 10px 10px;
+                font-size: 13px;
+            }
+
+            .admin-modal-overlay {
+                padding: 10px;
+            }
+
+            .admin-modal {
+                max-height: 88vh;
+            }
+
+            /* ── Diagnóstico: Listagem ───────────────────────────────────── */
+            .diag-list-pdf-btn {
+                padding: 4px 8px;
+                font-size: 11px;
+            }
+
+            /* Ocultar colunas "Data" (2ª) e "Plano" (5ª) — menos críticas no mobile */
+            #diag-list-screen .admin-table th:nth-child(2),
+            #diag-list-screen .admin-table td:nth-child(2),
+            #diag-list-screen .admin-table th:nth-child(5),
+            #diag-list-screen .admin-table td:nth-child(5) {
+                display: none;
+            }
+
+            /* Scroll horizontal como segurança caso ainda precise */
+            #diag-list-screen .admin-card {
+                overflow-x: auto;
+            }
+
+            /* Ajustar nome do paciente para quebrar linha em vez de extrapolar */
+            #diag-list-screen .admin-table td:nth-child(1) {
+                min-width: 100px;
+                word-break: break-word;
+            }
+
+            /* Garantir que badges de resultado não extrapolem */
+            #diag-list-screen .diag-list-type-tag,
+            #diag-list-screen .diag-list-badge {
+                font-size: 11px;
+                padding: 2px 7px;
+            }
+
+            /* ── Perfil ──────────────────────────────────────────────────── */
+            .profile-screen-wrap {
+                padding: 18px 14px 44px;
+            }
+
+            .profile-hero-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 22px 16px;
+                gap: 12px;
+            }
+
+        }
+
+        /* end @media (max-width: 768px) */
     </style>
 </head>
 
@@ -6170,6 +6641,52 @@
         </div>
     </div>
 
+    <!-- ═══════════════════════════════════════════════════════════════
+         MOBILE NAVIGATION — Completamente separado do layout desktop
+         ═══════════════════════════════════════════════════════════════ -->
+    <button id="mob-menu-btn" onclick="openMobNav()" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div id="mob-nav-overlay" onclick="closeMobNav()"></div>
+
+    <div id="mob-nav-drawer" role="navigation" aria-label="Menu mobile">
+        <div class="mob-drawer-head">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span>FonoClínico<small>Raciocínio Clínico</small></span>
+            </div>
+            <button class="mob-drawer-close" onclick="closeMobNav()" aria-label="Fechar menu">✕</button>
+        </div>
+        <nav class="mob-drawer-nav">
+            <button class="mob-nav-link" onclick="goToHome(); closeMobNav()">Início</button>
+            <div class="mob-drawer-divider"></div>
+            <div class="mob-drawer-section">Guias Técnicos</div>
+            <button class="mob-nav-link" onclick="showGuide('anamnese'); closeMobNav()">Anamnese Clínica</button>
+            <button class="mob-nav-link" onclick="showGuide('linguagem'); closeMobNav()">Linguagem Infantil</button>
+            <button class="mob-nav-link" onclick="showGuide('fala'); closeMobNav()">Fala e Fonologia</button>
+            <button class="mob-nav-link" onclick="showGuide('motricidade'); closeMobNav()">Motricidade
+                Orofacial</button>
+            <button class="mob-nav-link" onclick="showGuide('raciocinio'); closeMobNav()">Raciocínio Clínico
+                Integrado</button>
+            <div class="mob-drawer-divider"></div>
+            <div class="mob-drawer-section">Diagnóstico</div>
+            <button class="mob-nav-link" onclick="openPlans(); closeMobNav()">Novo Diagnóstico</button>
+            <button class="mob-nav-link" onclick="showDiagList(); closeMobNav()">Listagem</button>
+            <div class="mob-drawer-divider"></div>
+            <div class="mob-drawer-section">Conta</div>
+            <button class="mob-nav-link" onclick="showProfile(); closeMobNav()">Perfil</button>
+            <div class="mob-drawer-divider"></div>
+            <div class="mob-drawer-section">Admin</div>
+            <button class="mob-nav-link" onclick="showAdminGuias(); closeMobNav()">Gestão de Guias</button>
+            <button class="mob-nav-link" onclick="showAdminPerguntas(); closeMobNav()">Gestão de Perguntas</button>
+            <div class="mob-drawer-divider"></div>
+            <button class="mob-nav-link mob-nav-danger" onclick="logout(); closeMobNav()">Sair</button>
+        </nav>
+    </div>
+
     <script>
         // ── Utilitários de navegação ───────────────────────────────────────
         const ALL_SCREENS = [
@@ -6820,6 +7337,18 @@
             closeQuestionDelete();
             renderAdminQuestions();
             showToast('Pergunta excluída com sucesso.', 'warning');
+        }
+
+        // ── Mobile Navigation ──────────────────────────────────────────────
+        function openMobNav() {
+            document.getElementById('mob-nav-drawer').classList.add('mob-open');
+            document.getElementById('mob-nav-overlay').classList.add('mob-open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMobNav() {
+            document.getElementById('mob-nav-drawer').classList.remove('mob-open');
+            document.getElementById('mob-nav-overlay').classList.remove('mob-open');
+            document.body.style.overflow = '';
         }
     </script>
 </body>
