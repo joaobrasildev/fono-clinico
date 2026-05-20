@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Círculo externo -->
+  <circle cx="100" cy="100" r="80" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="4"/>
+  <!-- Cabeça -->
+  <circle cx="100" cy="60" r="16" fill="white"/>
+  <!-- Onda de fala -->
+  <path d="M60 110 Q80 80 100 110 T140 110" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <!-- Corpo -->
+  <rect x="78" y="118" width="44" height="52" rx="22" fill="rgba(255,255,255,0.75)"/>
+  <!-- Linhas e pontos laterais -->
+  <path d="M40 100 L20 100 M180 100 L160 100" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="20" cy="100" r="6" fill="white"/>
+  <circle cx="180" cy="100" r="6" fill="white"/>
+</svg>
