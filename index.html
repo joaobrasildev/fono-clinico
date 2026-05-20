@@ -2730,7 +2730,7 @@
         #mob-menu-btn {
             display: none;
             position: fixed;
-            top: 10px;
+            top: 11px;
             right: 16px;
             z-index: 200;
             align-items: center;
@@ -2740,16 +2740,23 @@
             width: 40px;
             height: 40px;
             border-radius: 10px;
-            background: var(--primary-light);
-            border: 1.5px solid var(--border);
+            background: #ffffff;
+            border: 1px solid var(--border);
             cursor: pointer;
             padding: 0;
+            box-shadow: 0 1px 6px rgba(31, 95, 168, 0.10);
+            transition: background 0.18s, box-shadow 0.18s;
+        }
+
+        #mob-menu-btn:hover {
+            background: var(--primary-light);
+            box-shadow: 0 3px 10px rgba(31, 95, 168, 0.16);
         }
 
         #mob-menu-btn span {
             display: block;
-            width: 20px;
-            height: 2px;
+            width: 18px;
+            height: 1.5px;
             background: var(--primary-dark);
             border-radius: 2px;
             transition: all 0.2s;
@@ -2760,8 +2767,9 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(14, 30, 55, 0.5);
+            background: rgba(14, 30, 55, 0.48);
             z-index: 300;
+            backdrop-filter: blur(2px);
         }
 
         #mob-nav-overlay.mob-open {
@@ -2775,15 +2783,16 @@
             right: 0;
             bottom: 0;
             width: 82vw;
-            max-width: 320px;
-            background: white;
+            max-width: 300px;
+            background: #ffffff;
             z-index: 301;
-            box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+            box-shadow: -6px 0 32px rgba(14, 30, 55, 0.18);
             transform: translateX(100%);
             transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
             display: flex;
             flex-direction: column;
             overflow-y: auto;
+            font-family: 'Inter', sans-serif;
         }
 
         #mob-nav-drawer.mob-open {
@@ -2794,43 +2803,63 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 16px;
-            border-bottom: 1px solid var(--border);
+            padding: 16px 18px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
             flex-shrink: 0;
+        }
+
+        .mob-drawer-head .logo {
+            color: #ffffff;
+        }
+
+        .mob-drawer-head .logo small {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .mob-drawer-head .logo-icon {
+            background: rgba(255, 255, 255, 0.15) url('logo-icon-dark.svg') center / 88% no-repeat;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .mob-drawer-close {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: var(--muted-bg);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.12);
             display: grid;
             place-items: center;
-            font-size: 18px;
-            color: var(--muted);
-            border: none;
+            font-size: 15px;
+            line-height: 1;
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             cursor: pointer;
             flex-shrink: 0;
+            font-family: 'Inter', sans-serif;
+            transition: background 0.15s;
+        }
+
+        .mob-drawer-close:hover {
+            background: rgba(255, 255, 255, 0.22);
         }
 
         .mob-drawer-nav {
-            padding: 8px 0 20px;
+            padding: 6px 0 24px;
             flex: 1;
         }
 
         .mob-drawer-nav .mob-nav-link {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 18px;
-            font-size: 14.5px;
+            padding: 11px 18px;
+            font-size: 14px;
             font-weight: 500;
+            letter-spacing: -0.01em;
             color: var(--foreground);
             background: none;
             border: none;
             width: 100%;
             text-align: left;
-            font-family: inherit;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
             transition: background 0.15s, color 0.15s;
         }
@@ -2840,22 +2869,39 @@
             color: var(--primary-dark);
         }
 
+        /* Sub-itens: recuados para hierarquia visual clara */
+        .mob-drawer-nav .mob-nav-link.mob-nav-sub {
+            padding-left: 30px;
+            font-size: 13.5px;
+            color: var(--muted);
+        }
+
+        .mob-drawer-nav .mob-nav-link.mob-nav-sub:hover {
+            color: var(--primary-dark);
+        }
+
         .mob-drawer-section {
-            padding: 10px 18px 4px;
+            padding: 14px 18px 5px;
             font-size: 10.5px;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             color: var(--muted);
+            font-family: 'Inter', sans-serif;
         }
 
         .mob-drawer-divider {
             height: 1px;
             background: var(--border);
-            margin: 6px 18px;
+            margin: 4px 0;
         }
 
         .mob-nav-danger {
+            color: var(--danger) !important;
+        }
+
+        .mob-nav-danger:hover {
+            background: #fff1f1 !important;
             color: var(--danger) !important;
         }
 
@@ -2865,6 +2911,11 @@
             /* Mostrar hambúrger */
             #mob-menu-btn {
                 display: flex;
+            }
+
+            /* Ocultar hambúrger na tela de login */
+            body.on-login-page #mob-menu-btn {
+                display: none !important;
             }
 
             /* Esconder nav e CTAs do desktop */
@@ -6664,24 +6715,28 @@
             <button class="mob-nav-link" onclick="goToHome(); closeMobNav()">Início</button>
             <div class="mob-drawer-divider"></div>
             <div class="mob-drawer-section">Guias Técnicos</div>
-            <button class="mob-nav-link" onclick="showGuide('anamnese'); closeMobNav()">Anamnese Clínica</button>
-            <button class="mob-nav-link" onclick="showGuide('linguagem'); closeMobNav()">Linguagem Infantil</button>
-            <button class="mob-nav-link" onclick="showGuide('fala'); closeMobNav()">Fala e Fonologia</button>
-            <button class="mob-nav-link" onclick="showGuide('motricidade'); closeMobNav()">Motricidade
+            <button class="mob-nav-link mob-nav-sub" onclick="showGuide('anamnese'); closeMobNav()">Anamnese
+                Clínica</button>
+            <button class="mob-nav-link mob-nav-sub" onclick="showGuide('linguagem'); closeMobNav()">Linguagem
+                Infantil</button>
+            <button class="mob-nav-link mob-nav-sub" onclick="showGuide('fala'); closeMobNav()">Fala e
+                Fonologia</button>
+            <button class="mob-nav-link mob-nav-sub" onclick="showGuide('motricidade'); closeMobNav()">Motricidade
                 Orofacial</button>
-            <button class="mob-nav-link" onclick="showGuide('raciocinio'); closeMobNav()">Raciocínio Clínico
+            <button class="mob-nav-link mob-nav-sub" onclick="showGuide('raciocinio'); closeMobNav()">Raciocínio Clínico
                 Integrado</button>
             <div class="mob-drawer-divider"></div>
             <div class="mob-drawer-section">Diagnóstico</div>
-            <button class="mob-nav-link" onclick="openPlans(); closeMobNav()">Novo Diagnóstico</button>
-            <button class="mob-nav-link" onclick="showDiagList(); closeMobNav()">Listagem</button>
+            <button class="mob-nav-link mob-nav-sub" onclick="openPlans(); closeMobNav()">Novo Diagnóstico</button>
+            <button class="mob-nav-link mob-nav-sub" onclick="showDiagList(); closeMobNav()">Listagem</button>
             <div class="mob-drawer-divider"></div>
             <div class="mob-drawer-section">Conta</div>
-            <button class="mob-nav-link" onclick="showProfile(); closeMobNav()">Perfil</button>
+            <button class="mob-nav-link mob-nav-sub" onclick="showProfile(); closeMobNav()">Perfil</button>
             <div class="mob-drawer-divider"></div>
             <div class="mob-drawer-section">Admin</div>
-            <button class="mob-nav-link" onclick="showAdminGuias(); closeMobNav()">Gestão de Guias</button>
-            <button class="mob-nav-link" onclick="showAdminPerguntas(); closeMobNav()">Gestão de Perguntas</button>
+            <button class="mob-nav-link mob-nav-sub" onclick="showAdminGuias(); closeMobNav()">Gestão de Guias</button>
+            <button class="mob-nav-link mob-nav-sub" onclick="showAdminPerguntas(); closeMobNav()">Gestão de
+                Perguntas</button>
             <div class="mob-drawer-divider"></div>
             <button class="mob-nav-link mob-nav-danger" onclick="logout(); closeMobNav()">Sair</button>
         </nav>
@@ -6721,6 +6776,7 @@
         function goToHome() {
             hideAll();
             document.getElementById('home-screen').classList.remove('hidden');
+            document.body.classList.remove('on-login-page');
             closePlans();
             window.scrollTo(0, 0);
         }
@@ -6732,6 +6788,7 @@
         function logout() {
             hideAll();
             document.getElementById('login-screen').classList.remove('hidden');
+            document.body.classList.add('on-login-page');
             window.scrollTo(0, 0);
         }
         function openPlans() { document.getElementById('plans-modal').classList.add('open'); }
@@ -7340,6 +7397,9 @@
         }
 
         // ── Mobile Navigation ──────────────────────────────────────────────
+        // Estado inicial: página começa na tela de login
+        document.body.classList.add('on-login-page');
+
         function openMobNav() {
             document.getElementById('mob-nav-drawer').classList.add('mob-open');
             document.getElementById('mob-nav-overlay').classList.add('mob-open');
